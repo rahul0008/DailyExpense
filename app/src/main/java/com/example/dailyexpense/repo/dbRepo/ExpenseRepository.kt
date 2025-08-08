@@ -15,6 +15,8 @@ interface ExpenseRepository {
 
     fun getAllExpenses(): Flow<List<ExpenseEntity>>
 
+    fun getExpensesForDateRange(startDate: Long, endDate: Long): Flow<List<ExpenseEntity>> // For "Total Spent Today"
+
     // You could add more complex business logic methods here if needed,
     // for example, calculating total expenses for a month, etc.
     // fun getTotalExpensesForMonth(year: Int, month: Int): Flow<Double>
