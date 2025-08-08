@@ -1,4 +1,4 @@
-package com.example.dailyexpense.diModules // Or your preferred package
+package com.example.dailyexpense.diModules
 
 import android.content.Context
 import com.example.dailyexpense.db.dao.ExpenseDao
@@ -17,12 +17,13 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext appContext: Context): ExpenseDatabase {
-       return ExpenseDatabase.getDatabase(appContext)
+        return ExpenseDatabase.getDatabase(appContext)
     }
 
     @Provides
-    @Singleton // Or @ViewModelScoped, @ActivityScoped depending on your DAO's lifecycle needs
+    @Singleton
     fun provideExpenseDao(appDatabase: ExpenseDatabase): ExpenseDao {
         return appDatabase.expenseDao()
     }
 }
+
