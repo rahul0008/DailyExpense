@@ -97,29 +97,29 @@ Key features include:
 ## 📥 Download APK
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://drive.google.com/file/d/1kNxtVRZM0kjEE-9Am-Hm2HZMkwdUxJYa/view?usp=sharing)
 
-
 ## 📸 Screenshots  
 
 ### Category Expense View  
-![Category Expense View](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/CategoryExpenseView.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/CategoryExpenseView.png" width="300" height="600"/>  
 
 ### Expense Entry  
-![Expense Entry](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/EnxpenseEntry.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/EnxpenseEntry.png" width="300" height="600"/>  
 
 ### Expense Entry Error  
-![Expense Entry Error](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntryError.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntryError.png" width="300" height="600"/>  
 
 ### Expense Entry Success  
-![Expense Entry Success](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntrySuccess.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntrySuccess.png" width="300" height="600"/>  
 
 ### Expense Report  
-![Expense Report](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseReport.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseReport.png" width="300" height="600"/>  
 
 ### Normal Expense View  
-![Normal Expense View](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/NormalExpenseView.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/NormalExpenseView.png" width="300" height="600"/>  
 
 ### Report Share  
-![Report Share](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ReportShare.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ReportShare.png" width="300" height="600"/>  
 
 ### Time Grouped Expense View  
-![Time Grouped Expense View](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/TimeGroupedExpenseView.png)  
+<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/TimeGroupedExpenseView.png" width="300" height="600"/>  
+
