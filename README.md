@@ -75,7 +75,24 @@ Key features include:
        onSurface = Color(0xFF1C1B1F),
        */
    )
+  - Make sure to use all colors in the UI for consistency.
 
+4. **Use Cases Layer**  
+   - Follow **Single Responsibility Principle**.  
+   - Create a separate **Use Case** class for each action (e.g., `GetUserUseCase`, `UpdateProfileUseCase`).  
+   - Inject the repository interface into the Use Case.  
+
+5. **ViewModel Layer**  
+   - Follow **Open/Closed Principle**.  
+   - Contain only **UI-related logic** and call Use Cases for business logic.  
+   - Expose data to UI using **StateFlow** or **LiveData**.  
+
+6. **UI Layer (Jetpack Compose)**  
+   - Follow **Separation of Concerns**.  
+   - Keep Composables **stateless** where possible.  
+   - Collect StateFlow or LiveData from ViewModel and render UI accordingly.  
+
+    
 
 ## 📥 Download APK
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://drive.google.com/file/d/1kNxtVRZM0kjEE-9Am-Hm2HZMkwdUxJYa/view?usp=sharing)
