@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.material3)
+    implementation(libs.androidx.foundation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -59,6 +60,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //icons
+    implementation("androidx.compose.material:material-icons-core:1.7.8") // Or latest compatible version
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
 
     //room db

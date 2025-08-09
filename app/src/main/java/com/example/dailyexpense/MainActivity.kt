@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.dailyexpense.ui.presenter.expense.ExpenseEntryScreen
+import com.example.dailyexpense.ui.presenter.viewExpence.ViewExpensesScreen
 import com.example.dailyexpense.ui.theme.DailyExpenseTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,7 +40,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //        text = "Hello $name!",
 //        modifier = modifier
 //    )
-    ExpenseEntryScreen()
+//    ExpenseEntryScreen()
+    ViewExpensesScreen()
 }
 
 @Preview(showBackground = true)
