@@ -96,3 +96,30 @@ Key features include:
 
 ## 📥 Download APK
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://drive.google.com/file/d/1kNxtVRZM0kjEE-9Am-Hm2HZMkwdUxJYa/view?usp=sharing)
+
+
+## 📸 Screenshots  
+
+### Category Expense View  
+![Category Expense View](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/CategoryExpenseView.png)  
+
+### Expense Entry  
+![Expense Entry](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/EnxpenseEntry.png)  
+
+### Expense Entry Error  
+![Expense Entry Error](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntryError.png)  
+
+### Expense Entry Success  
+![Expense Entry Success](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntrySuccess.png)  
+
+### Expense Report  
+![Expense Report](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseReport.png)  
+
+### Normal Expense View  
+![Normal Expense View](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/NormalExpenseView.png)  
+
+### Report Share  
+![Report Share](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ReportShare.png)  
+
+### Time Grouped Expense View  
+![Time Grouped Expense View](https://github.com/rahul0008/DailyExpense/blob/main/screenshots/TimeGroupedExpenseView.png)  
