@@ -1,4 +1,4 @@
-package com.example.dailyexpense
+package com.example.dailyexpense.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,8 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.dailyexpense.ui.presenter.expenseReport.ExpenseReportScreen
-import com.example.dailyexpense.ui.presenter.viewExpence.ViewExpensesScreen
+import com.example.bottomNavigation.MainAppScreen
 import com.example.dailyexpense.ui.theme.DailyExpenseTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,7 +40,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //    )
 //    ExpenseEntryScreen()
 //    ViewExpensesScreen()
-    ExpenseReportScreen()
+//    ExpenseReportScreen()
+    MainAppScreen()
 }
 
 @Preview(showBackground = true)
