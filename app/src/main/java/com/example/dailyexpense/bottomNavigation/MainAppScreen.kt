@@ -1,4 +1,4 @@
-package com.example.bottomNavigation
+package com.example.dailyexpense.bottomNavigation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding

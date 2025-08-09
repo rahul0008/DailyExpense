@@ -1,6 +1,5 @@
 package com.example.dailyexpense.ui.uiComponents
 
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
