@@ -97,6 +97,7 @@ Key features include:
 ## 📥 Download APK
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://drive.google.com/file/d/1kNxtVRZM0kjEE-9Am-Hm2HZMkwdUxJYa/view?usp=sharing)
 
+
 ## 📸 Screenshots  
 
 ### Category Expense View  
@@ -120,6 +121,24 @@ Key features include:
 </p>  
 
 ### Expense Report  
-<p align="center"
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseReport.png" width="200" height="400"/>
+</p>  
+
+### Normal Expense View  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/NormalExpenseView.png" width="200" height="400"/>
+</p>  
+
+### Report Share  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ReportShare.png" width="200" height="400"/>
+</p>  
+
+### Time Grouped Expense View  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/TimeGroupedExpenseView.png" width="200" height="400"/>
+</p>  
+
 
 
