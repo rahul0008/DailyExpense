@@ -1,4 +1,4 @@
-package com.example.dailyexpense.ui.presenter.expense
+package com.example.dailyexpense.ui.presenter.expenseEntry
 
 
 import androidx.compose.animation.AnimatedVisibility

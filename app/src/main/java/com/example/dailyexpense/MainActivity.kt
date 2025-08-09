@@ -7,11 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.dailyexpense.ui.presenter.expense.ExpenseEntryScreen
+import com.example.dailyexpense.ui.presenter.expenseReport.ExpenseReportScreen
 import com.example.dailyexpense.ui.presenter.viewExpence.ViewExpensesScreen
 import com.example.dailyexpense.ui.theme.DailyExpenseTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +40,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //        modifier = modifier
 //    )
 //    ExpenseEntryScreen()
-    ViewExpensesScreen()
+//    ViewExpensesScreen()
+    ExpenseReportScreen()
 }
 
 @Preview(showBackground = true)

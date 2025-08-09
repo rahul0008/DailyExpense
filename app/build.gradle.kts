@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.dailyexpense"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -65,6 +65,9 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core:1.7.8") // Or latest compatible version
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
+
+    //y-chart
+    implementation("co.yml:ycharts:2.1.0")
 
     //room db
     implementation(libs.androidx.room.runtime)

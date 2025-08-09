@@ -1,11 +1,9 @@
-package com.example.dailyexpense.ui.presenter.expense
+package com.example.dailyexpense.ui.presenter.expenseEntry
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier // Modifier might be passed down to ExpenseEntryLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dailyexpense.ui.theme.DailyExpenseTheme
 
 @Composable

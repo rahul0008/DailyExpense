@@ -1,4 +1,4 @@
-package com.example.dailyexpense.ui.presenter.expense
+package com.example.dailyexpense.ui.presenter.expenseEntry
 
 import com.example.dailyexpense.util.essentialEnums.ExpenseCategory
 

@@ -1,4 +1,4 @@
-package com.example.dailyexpense.ui.presenter.expense
+package com.example.dailyexpense.ui.presenter.expenseEntry
 
 import android.content.Context
 import android.widget.Toast
