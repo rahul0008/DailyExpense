@@ -154,7 +154,7 @@ class ExpenseReportViewModel @Inject constructor(
                 }.sortedByDescending { it.totalAmount }
 
             val categorySpendingChartData = categoryTotalsList.map {
-                ChartDataEntry(label = it.categoryDisplayName, value = it.totalAmount.toFloat())
+                ChartDataEntry(label = it.categoryDisplayName.take(3), value = it.totalAmount.toFloat())
             }
 
             val reportData = ExpenseReportData(

@@ -28,7 +28,6 @@ import androidx.compose.material.icons.filled.CalendarViewDay
 import androidx.compose.material.icons.filled.CardTravel
 import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.ChildCare
-import androidx.compose.material.icons.filled.Commute
 import androidx.compose.material.icons.filled.CreditScore
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Fastfood
@@ -341,7 +340,6 @@ fun CategoryIcon(category: ExpenseCategory, modifier: Modifier = Modifier) {
         ExpenseCategory.FOOD -> Icons.Filled.Fastfood
         ExpenseCategory.UTILITY -> Icons.AutoMirrored.Filled.ReceiptLong
         ExpenseCategory.HOUSING -> Icons.Filled.Home
-        ExpenseCategory.TRANSPORTATION -> Icons.Filled.Commute
         ExpenseCategory.HEALTHCARE -> Icons.Filled.LocalHospital
         ExpenseCategory.PERSONAL_CARE -> Icons.Filled.Spa
         ExpenseCategory.EDUCATION -> Icons.Filled.School

@@ -15,8 +15,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.HorizontalDivider // Corrected import
-import androidx.compose.material3.DividerDefaults // For thickness/color
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -28,12 +28,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.dailyexpense.ui.theme.DailyExpenseTheme // Assuming your theme
-import com.example.dailyexpense.ui.uiComponents.AppPrimaryButton // Assuming this exists
-import com.example.dailyexpense.ui.uiComponents.AppText // Assuming this exists
-import com.example.dailyexpense.ui.uiComponents.AppTextButton // Assuming this exists
-import com.example.dailyexpense.ui.uiComponents.AppYBarChart // Assuming this exists
-import java.util.Locale // For string formatting
+import com.example.dailyexpense.ui.theme.DailyExpenseTheme
+import com.example.dailyexpense.ui.uiComponents.AppPrimaryButton
+import com.example.dailyexpense.ui.uiComponents.AppText
+import com.example.dailyexpense.ui.uiComponents.AppTextButton
+import com.example.dailyexpense.ui.uiComponents.AppYBarChart
+import java.util.Locale
 
 @Composable
 fun ExpenseReportScreenLayout(
@@ -67,8 +67,8 @@ fun ExpenseReportScreenLayout(
         )
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 16.dp),
-            thickness = DividerDefaults.Thickness, // Use DividerDefaults
-            color = DividerDefaults.color         // Use DividerDefaults
+            thickness = DividerDefaults.Thickness,
+            color = DividerDefaults.color
         )
 
         AppReportSectionTitle("Daily Totals")
@@ -153,13 +153,13 @@ fun ExpenseReportScreenLayout(
             AppPrimaryButton(
                 text = "Share as PDF (Simulated)",
                 onClick = onExportPdfClicked,
-                enabled = !isSimulatingExport && !isGeneratingCsv, // Disable if simulation running or CSV generating
+                enabled = !isSimulatingExport && !isGeneratingCsv,
                 modifier = Modifier.fillMaxWidth(0.85f)
             )
             AppPrimaryButton(
                 text = "Share as TXT (Simulated)",
                 onClick = onExportTxtClicked,
-                enabled = !isSimulatingExport && !isGeneratingCsv, // Disable if simulation running or CSV generating
+                enabled = !isSimulatingExport && !isGeneratingCsv,
                 modifier = Modifier.fillMaxWidth(0.85f)
             )
         }
@@ -177,7 +177,8 @@ fun ExpenseReportScreenLayout(
                         .padding(16.dp)
                         .fillMaxWidth()
                 ) {
-                    if (isSimulatingExport && exportSimulationMessage != null) { // Show progress if actively simulating
+                    if (isSimulatingExport && exportSimulationMessage != null) {
+
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.fillMaxWidth(),

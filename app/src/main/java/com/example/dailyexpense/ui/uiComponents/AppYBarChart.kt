@@ -1,5 +1,6 @@
 package com.example.dailyexpense.ui.uiComponents
 
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,8 +34,8 @@ fun AppYBarChart(
     if (chartDataEntries.isEmpty()) {
         AppText( // Assuming AppText is defined and accessible
             text = "No data available for $title.",
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = modifier
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(chartHeight)
                 .padding(16.dp)
@@ -50,9 +51,8 @@ fun AppYBarChart(
             description = "Bar for ${entry.label}, value ${entry.value}"
         )
     }
-
     val maxYValue = chartDataEntries.maxOfOrNull { it.value }?.takeIf { it > 0f } ?: 1f // Ensure maxYValue is at least 1 for sensible division, or handle 0 case
-    val yAxisStepCount = 5 // Number of intervals
+    val yAxisStepCount = 5
 
     val xAxisData = AxisData.Builder()
         .axisStepSize(100.dp)
@@ -62,23 +62,21 @@ fun AppYBarChart(
         .axisLabelAngle(if (chartDataEntries.any { it.label.length > 7 }) 30f else 0f)
         .labelAndAxisLinePadding(15.dp)
         .axisLineColor(axisLabelColor)
+        .startDrawPadding(24.dp)
         .axisLabelColor(axisLabelColor)
         .build()
 
-    // 4. Configure Y-Axis - CORRECTED
     val yAxisData = AxisData.Builder()
-        .steps(yAxisStepCount) // Number of intervals. Will result in `yAxisStepCount + 1` labels.
-        .labelData { index -> // index is an Int from 0 to yAxisStepCount
-            // Calculate the data value for this specific Y-axis tick mark
+        .steps(yAxisStepCount)
+        .labelData { index ->
             val stepValue = maxYValue / yAxisStepCount
             val labelValueAtTick = stepValue * index
-            "%.0f".format(labelValueAtTick) // Format the calculated Float
+            "%.0f".format(labelValueAtTick)
         }
         .axisLineColor(axisLabelColor)
         .axisLabelColor(axisLabelColor)
-        // .maxRange(maxYValue) // Consider explicitly setting maxRange if labels don't align perfectly
+        .startDrawPadding(24.dp)
         .build()
-
     val barChartData = BarChartData(
         chartData = individualBarsData,
         xAxisData = xAxisData,
@@ -94,27 +92,20 @@ fun AppYBarChart(
         horizontalExtraSpace = 10.dp,
     )
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
         AppText(
             text = title,
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(bottom = 12.dp, start = 8.dp)
         )
         BarChart(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .height(chartHeight),
             barChartData = barChartData
         )
     }
 }
-
-// Dummy AppText for preview - ensure this is present or your actual AppText is accessible
-@Composable
-fun AppText(text: String, style: androidx.compose.ui.text.TextStyle, modifier: Modifier = Modifier) {
-    androidx.compose.material3.Text(text = text, style = style, modifier = modifier)
-}
-
 
 @Preview(showBackground = true, name = "Bar Chart Preview")
 @Composable
