@@ -1,6 +1,5 @@
 package com.example.dailyexpense.ui.presenter.expenseEntry
 
-import android.content.Context
 import com.example.dailyexpense.util.essentialEnums.ExpenseCategory
 
 sealed class ExpenseScreenEvent {
