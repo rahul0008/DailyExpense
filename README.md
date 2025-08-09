@@ -100,26 +100,26 @@ Key features include:
 ## 📸 Screenshots  
 
 ### Category Expense View  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/CategoryExpenseView.png" width="300" height="600"/>  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/CategoryExpenseView.png" width="200" height="400"/>
+</p>  
 
 ### Expense Entry  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/EnxpenseEntry.png" width="300" height="600"/>  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/EnxpenseEntry.png" width="200" height="400"/>
+</p>  
 
 ### Expense Entry Error  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntryError.png" width="300" height="600"/>  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntryError.png" width="200" height="400"/>
+</p>  
 
 ### Expense Entry Success  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntrySuccess.png" width="300" height="600"/>  
+<p align="center">
+  <img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseEntrySuccess.png" width="200" height="400"/>
+</p>  
 
 ### Expense Report  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ExpenseReport.png" width="300" height="600"/>  
+<p align="center"
 
-### Normal Expense View  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/NormalExpenseView.png" width="300" height="600"/>  
-
-### Report Share  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/ReportShare.png" width="300" height="600"/>  
-
-### Time Grouped Expense View  
-<img src="https://github.com/rahul0008/DailyExpense/blob/main/screenshots/TimeGroupedExpenseView.png" width="300" height="600"/>  
 
