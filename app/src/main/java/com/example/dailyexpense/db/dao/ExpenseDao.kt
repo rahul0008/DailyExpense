@@ -31,8 +31,4 @@ interface ExpenseDao {
     @Query("SELECT * FROM expenses WHERE timestamp BETWEEN :startDate AND :endDate")
     fun getExpensesForDateRange(startDate: Long, endDate: Long): Flow<List<ExpenseEntity>>
 
-    // You can add more specific queries here as needed
-    // For example, to get expenses by category:
-    // @Query("SELECT * FROM expenses WHERE category = :categoryName ORDER BY timestamp DESC")
-    // fun getExpensesByCategory(categoryName: String): Flow<List<ExpenseEntity>>
 }

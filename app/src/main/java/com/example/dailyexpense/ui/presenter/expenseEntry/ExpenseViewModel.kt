@@ -1,15 +1,16 @@
 package com.example.dailyexpense.ui.presenter.expenseEntry
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dailyexpense.db.entity.ExpenseEntity
 import com.example.dailyexpense.repo.dbRepo.ExpenseRepository
 import com.example.dailyexpense.util.essentialEnums.ExpenseCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -29,7 +30,12 @@ class ExpenseViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ExpenseScreenState())
     val uiState: StateFlow<ExpenseScreenState> = _uiState.asStateFlow()
 
-    private val currencyFormatter: NumberFormat = NumberFormat.getCurrencyInstance(Locale("en", "IN")).apply {
+
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
+
+    private val currencyFormatter: NumberFormat = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")).apply {
         currency = Currency.getInstance("INR")
     }
 
@@ -38,10 +44,9 @@ class ExpenseViewModel @Inject constructor(
     }
 
     private fun loadTotalSpentToday() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val (startOfDay, endOfDay) = getTodayDateRangeTimestamps()
 
-            // Uses expenseRepository which calls DAO's getExpensesForDateRange (using timestamp)
             expenseRepository.getExpensesForDateRange(startOfDay, endOfDay)
                 .map { expenses -> expenses.sumOf { it.amount } }
                 .catch { e ->
@@ -72,7 +77,7 @@ class ExpenseViewModel @Inject constructor(
                 var error: String? = null
                 if (newAmount.isBlank()) {
                     error = "Amount cannot be empty"
-                } else if (!newAmount.matches(Regex("^\\d*\\.?\\d*\\s*\$"))) { // Allow trailing space then trim
+                } else if (!newAmount.matches(Regex("^\\d*\\.?\\d*\\s*$"))) { // Allow trailing space then trim
                     error = "Invalid amount format"
                 }
                 _uiState.update {
@@ -102,7 +107,7 @@ class ExpenseViewModel @Inject constructor(
                 _uiState.update { it.copy(isCategoryDropdownExpanded = !it.isCategoryDropdownExpanded) }
             }
             is ExpenseScreenEvent.SubmitExpense -> {
-                handleSubmitExpense(event.context)
+                handleSubmitExpense()
             }
             is ExpenseScreenEvent.ClearSubmissionStatus -> {
                 _uiState.update { it.copy(submissionStatus = SubmissionStatus.Idle) }
@@ -127,12 +132,12 @@ class ExpenseViewModel @Inject constructor(
             isValid = false
         } else {
             try {
-                val amountValue = amountStr.toDouble() // toDouble handles trimmed string
+                val amountValue = amountStr.toDouble()
                 if (amountValue <= 0) {
                     amountErrorUpdate = "Amount must be positive"
                     isValid = false
                 }
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
                 amountErrorUpdate = "Invalid amount format"
                 isValid = false
             }
@@ -149,29 +154,28 @@ class ExpenseViewModel @Inject constructor(
         return isValid
     }
 
-    private fun handleSubmitExpense(context: Context) {
+    private fun handleSubmitExpense() {
         if (!validateInputs()) {
             return
         }
 
         _uiState.update { it.copy(isSubmitting = true, submissionStatus = SubmissionStatus.Loading) }
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val currentState = _uiState.value
             val amountDouble = currentState.expenseAmount.toDoubleOrNull() ?: 0.0
 
             val newExpenseEntity = ExpenseEntity(
                 title = currentState.expenseTitle.trim(),
                 amount = amountDouble,
-                category = currentState.selectedCategory.name, // Storing enum's .name for robustness
+                category = currentState.selectedCategory.name,
                 notes = currentState.expenseNotes.trim().ifBlank { null },
-                imageUri = currentState.receiptImageUri, // Matching your ExpenseEntity field
-                timestamp = System.currentTimeMillis() // Explicitly set, though entity has default
+                imageUri = currentState.receiptImageUri,
+                timestamp = System.currentTimeMillis()
             )
 
             try {
                 expenseRepository.insertExpense(newExpenseEntity)
-                Toast.makeText(context, "Expense Added: ${newExpenseEntity.title}", Toast.LENGTH_SHORT).show()
 
                 _uiState.update {
                     it.copy(
@@ -188,7 +192,7 @@ class ExpenseViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 println("Error inserting expense: ${e.message}")
-                Toast.makeText(context, "Failed to add expense. Please try again.", Toast.LENGTH_LONG).show()
+                _eventFlow.emit(UiEvent.ShowToast("Failed to add expense. Please try again."))
                 _uiState.update {
                     it.copy(
                         isSubmitting = false,

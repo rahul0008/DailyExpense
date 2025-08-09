@@ -5,10 +5,10 @@ import com.example.dailyexpense.util.essentialEnums.ExpenseCategory
 data class ExpenseScreenState(
     // Input Field Values
     val expenseTitle: String = "",
-    val expenseAmount: String = "", // Keep as String for TextField, validate to Double
-    val selectedCategory: ExpenseCategory = ExpenseCategory.FOOD, // Default category
+    val expenseAmount: String = "",
+    val selectedCategory: ExpenseCategory = ExpenseCategory.FOOD,
     val expenseNotes: String = "",
-    val receiptImageUri: String? = null, // Placeholder for image URI
+    val receiptImageUri: String? = null,
 
     // UI Control State
     val isCategoryDropdownExpanded: Boolean = false,
@@ -16,19 +16,18 @@ data class ExpenseScreenState(
     val submissionStatus: SubmissionStatus = SubmissionStatus.Idle,
 
     // Data Display State
-    val totalSpentTodayFormatted: String = "₹0.00", // Pre-formatted for display
+    val totalSpentTodayFormatted: String = "₹0.00",
 
     // Form Validation Errors
     val titleError: String? = null,
     val amountError: String? = null,
-    // You could add categoryError: String? = null if needed
 )
 
 // Enum to manage the submission status more clearly
 enum class SubmissionStatus {
     Idle,
     Success,
-    Error, // Could add a message: Error(val message: String)
-    Loading // If 'isSubmitting' is not enough, though often it is.
+    Error,
+    Loading
 }
 

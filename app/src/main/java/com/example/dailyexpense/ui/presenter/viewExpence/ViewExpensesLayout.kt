@@ -2,26 +2,75 @@ package com.example.dailyexpense.ui.presenter.viewExpence
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Label
+import androidx.compose.material.icons.automirrored.filled.ReceiptLong
 import androidx.compose.material.icons.automirrored.filled.ViewList
-import androidx.compose.material.icons.filled.* // For various icons
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.CalendarViewDay
+import androidx.compose.material.icons.filled.CardTravel
+import androidx.compose.material.icons.filled.Category
+import androidx.compose.material.icons.filled.ChildCare
+import androidx.compose.material.icons.filled.Commute
+import androidx.compose.material.icons.filled.CreditScore
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Fastfood
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocalHospital
+import androidx.compose.material.icons.filled.MoreHoriz
+import androidx.compose.material.icons.filled.Pets
+import androidx.compose.material.icons.filled.Redeem
+import androidx.compose.material.icons.filled.Savings
+import androidx.compose.material.icons.filled.School
+import androidx.compose.material.icons.filled.Shield
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Spa
+import androidx.compose.material.icons.filled.Subscriptions
+import androidx.compose.material.icons.filled.Theaters
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.dailyexpense.R // Your R file
+import com.example.dailyexpense.R
 import com.example.dailyexpense.ui.theme.DailyExpenseTheme
 import com.example.dailyexpense.ui.uiComponents.AppText
 import com.example.dailyexpense.util.essentialEnums.ExpenseCategory
@@ -36,8 +85,6 @@ fun ViewExpensesLayout(
     onEvent: (ViewExpensesScreenEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current // For date pickers, etc.
-
     // State for DatePickerDialog
     val datePickerState = rememberDatePickerState()
     if (state.showDatePickerDialog) {
@@ -58,7 +105,6 @@ fun ViewExpensesLayout(
             DatePicker(state = datePickerState)
         }
     }
-    // You would add a similar DateRangePickerDialog if using DateFilterType.DATE_RANGE
 
     Scaffold(
         modifier = modifier,
@@ -74,8 +120,8 @@ fun ViewExpensesLayout(
                     IconButton(onClick = {
                         val nextGrouping = when (state.currentGrouping) {
                             GroupingOption.NONE -> GroupingOption.BY_CATEGORY
-                            GroupingOption.BY_CATEGORY -> GroupingOption.BY_Time
-                            GroupingOption.BY_Time -> GroupingOption.NONE
+                            GroupingOption.BY_CATEGORY -> GroupingOption.BY_TIME
+                            GroupingOption.BY_TIME -> GroupingOption.NONE
                         }
                         onEvent(ViewExpensesScreenEvent.GroupingOptionChanged(nextGrouping))
                     }) {
@@ -83,7 +129,7 @@ fun ViewExpensesLayout(
                             imageVector = when (state.currentGrouping) {
                                 GroupingOption.NONE -> Icons.AutoMirrored.Filled.ViewList
                                 GroupingOption.BY_CATEGORY -> Icons.Filled.Category
-                                GroupingOption.BY_Time -> Icons.Filled.CalendarViewDay
+                                GroupingOption.BY_TIME -> Icons.Filled.CalendarViewDay
                             },
                             contentDescription = "Toggle Grouping"
                         )
@@ -149,7 +195,7 @@ fun DateFilterChips(
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        DateFilterType.values().filterNot { it == DateFilterType.DATE_RANGE }.forEach { filter -> // Exclude DATE_RANGE for now
+        DateFilterType.entries.filterNot { it == DateFilterType.DATE_RANGE }.forEach { filter -> // Exclude DATE_RANGE for now
             FilterChip(
                 selected = selectedFilter == filter,
                 onClick = { onFilterSelected(filter) },
@@ -234,17 +280,13 @@ fun GroupedExpensesList(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         groupedExpenses.forEach { group ->
-            stickyHeader { // Requires an OptIn if not already present
+            stickyHeader {
                 GroupHeader(title = group.groupTitle, totalAmount = group.totalAmountFormattedInGroup)
             }
             items(group.expenses, key = { it.id }) { expense ->
                 ExpenseRow(expenseItem = expense, onClick = {
                     onEvent(ViewExpensesScreenEvent.ExpenseClicked(expense.id))
                 })
-                // Add a small divider within group if desired, except for last item
-                if (group.expenses.last() != expense) {
-                    // Divider(modifier = Modifier.padding(start = 16.dp, end = 16.dp))
-                }
             }
         }
     }
@@ -293,32 +335,32 @@ fun ExpenseRow(expenseItem: ExpenseListItem, onClick: () -> Unit) {
 
 @Composable
 fun CategoryIcon(category: ExpenseCategory, modifier: Modifier = Modifier) {
-    // Replace with actual icons based on your drawable resources
     val iconRes = when (category) {
-        ExpenseCategory.STAFF -> R.drawable.ic_wallet
-        ExpenseCategory.TRAVEL -> R.drawable.ic_wallet
-        ExpenseCategory.FOOD -> R.drawable.ic_wallet
-        ExpenseCategory.UTILITY -> R.drawable.ic_wallet
-        ExpenseCategory.HOUSING -> R.drawable.ic_wallet
-        ExpenseCategory.TRANSPORTATION -> R.drawable.ic_wallet
-        ExpenseCategory.HEALTHCARE -> R.drawable.ic_wallet
-        ExpenseCategory.PERSONAL_CARE -> R.drawable.ic_wallet
-        ExpenseCategory.EDUCATION -> R.drawable.ic_wallet
-        ExpenseCategory.ENTERTAINMENT -> R.drawable.ic_wallet
-        ExpenseCategory.SHOPPING -> R.drawable.ic_wallet
-        ExpenseCategory.INSURANCE -> R.drawable.ic_wallet
-        ExpenseCategory.DEBT_PAYMENT -> R.drawable.ic_wallet
-        ExpenseCategory.SAVINGS_INVESTMENTS -> R.drawable.ic_wallet
-        ExpenseCategory.CHILDCARE -> R.drawable.ic_wallet
-        ExpenseCategory.PETS -> R.drawable.ic_wallet
-        ExpenseCategory.TAXES -> R.drawable.ic_wallet
-        ExpenseCategory.GIFTS_DONATIONS -> R.drawable.ic_wallet
-        ExpenseCategory.SUBSCRIPTIONS -> R.drawable.ic_wallet
-        ExpenseCategory.MISCELLANEOUS -> R.drawable.ic_wallet
-        ExpenseCategory.OTHER -> R.drawable.ic_reciept
+        ExpenseCategory.STAFF -> Icons.Filled.Group
+        ExpenseCategory.TRAVEL -> Icons.Filled.CardTravel
+        ExpenseCategory.FOOD -> Icons.Filled.Fastfood
+        ExpenseCategory.UTILITY -> Icons.AutoMirrored.Filled.ReceiptLong
+        ExpenseCategory.HOUSING -> Icons.Filled.Home
+        ExpenseCategory.TRANSPORTATION -> Icons.Filled.Commute
+        ExpenseCategory.HEALTHCARE -> Icons.Filled.LocalHospital
+        ExpenseCategory.PERSONAL_CARE -> Icons.Filled.Spa
+        ExpenseCategory.EDUCATION -> Icons.Filled.School
+        ExpenseCategory.ENTERTAINMENT -> Icons.Filled.Theaters
+        ExpenseCategory.SHOPPING -> Icons.Filled.ShoppingCart
+        ExpenseCategory.INSURANCE -> Icons.Filled.Shield
+        ExpenseCategory.DEBT_PAYMENT -> Icons.Filled.CreditScore
+        ExpenseCategory.SAVINGS_INVESTMENTS -> Icons.Filled.Savings
+        ExpenseCategory.CHILDCARE -> Icons.Filled.ChildCare
+        ExpenseCategory.PETS -> Icons.Filled.Pets
+        ExpenseCategory.TAXES -> Icons.Filled.Calculate
+        ExpenseCategory.GIFTS_DONATIONS -> Icons.Filled.Redeem
+        ExpenseCategory.SUBSCRIPTIONS -> Icons.Filled.Subscriptions
+        ExpenseCategory.MISCELLANEOUS -> Icons.Filled.MoreHoriz
+        ExpenseCategory.OTHER -> Icons.AutoMirrored.Filled.Label
     }
+
     Icon(
-        painter = painterResource(id = iconRes),
+        imageVector = iconRes,
         contentDescription = category.displayName,
         modifier = modifier.background(MaterialTheme.colorScheme.secondaryContainer, CircleShape).padding(8.dp), // Example styling
         tint = MaterialTheme.colorScheme.onSecondaryContainer
@@ -357,7 +399,7 @@ fun EmptyStateView() {
     }
 }
 
-// --- Preview ---
+
 @Preview(showBackground = true, name = "View Expenses Light")
 @Preview(showBackground = true, name = "View Expenses Dark", uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -415,7 +457,3 @@ fun ViewExpensesLayoutLoadingPreview() {
         }
     }
 }
-
-// Make sure you have placeholder drawables like:
-// R.drawable.ic_food, ic_bills, etc.
-// R.drawable.ic_empty_box

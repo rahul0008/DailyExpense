@@ -34,13 +34,4 @@ class ExpenseRepositoryImpl @Inject constructor(
     override fun getExpensesForDateRange(startDate: Long, endDate: Long): Flow<List<ExpenseEntity>> {
         return expenseDao.getExpensesForDateRange(startDate, endDate)
     }
-
-    // Example of implementing a more complex method if you had one in the interface:
-    // override fun getTotalExpensesForMonth(year: Int, month: Int): Flow<Double> {
-    //     // You might have a specific DAO method for this or calculate it here
-    //     // from the results of getAllExpenses() or a more targeted query.
-    //     return expenseDao.getExpensesForMonth(year, month).map { expenses ->
-    //         expenses.sumOf { it.amount }
-    //     }
-    // }
 }

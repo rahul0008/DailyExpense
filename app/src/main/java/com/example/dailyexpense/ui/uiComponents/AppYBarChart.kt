@@ -20,7 +20,6 @@ import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.barchart.models.BarData
 import co.yml.charts.ui.barchart.models.BarStyle
 import com.example.dailyexpense.ui.presenter.expenseReport.ChartDataEntry
-// import com.example.dailyexpense.ui.theme.DailyExpenseTheme // If you have a custom theme for previews
 
 @Composable
 fun AppYBarChart(
@@ -71,7 +70,7 @@ fun AppYBarChart(
         .steps(yAxisStepCount) // Number of intervals. Will result in `yAxisStepCount + 1` labels.
         .labelData { index -> // index is an Int from 0 to yAxisStepCount
             // Calculate the data value for this specific Y-axis tick mark
-            val stepValue = if (yAxisStepCount > 0) maxYValue / yAxisStepCount else 0f
+            val stepValue = maxYValue / yAxisStepCount
             val labelValueAtTick = stepValue * index
             "%.0f".format(labelValueAtTick) // Format the calculated Float
         }

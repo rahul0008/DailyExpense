@@ -62,15 +62,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //navigation
-    implementation("androidx.navigation:navigation-compose:2.9.3")
+    implementation(libs.androidx.navigation.compose)
 
     //icons
-    implementation("androidx.compose.material:material-icons-core:1.7.8")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
 
 
     //y-chart
-    implementation("co.yml:ycharts:2.1.0")
+    implementation(libs.ycharts)
 
     //room db
     implementation(libs.androidx.room.runtime)

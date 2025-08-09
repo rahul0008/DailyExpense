@@ -15,10 +15,11 @@ import com.example.dailyexpense.ui.presenter.viewExpence.ViewExpensesScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") // Add this if Scaffold padding isn't used directly
 @Composable
-fun MainAppScreen() {
+fun MainAppScreen(modifier: Modifier) {
     val navController = rememberNavController()
 
     Scaffold(
+        modifier =modifier,
         bottomBar = {
             NavigationBar {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -48,7 +49,8 @@ fun MainAppScreen() {
                 }
             }
         }
-    ) { innerPadding -> // Content of the Scaffold
+    ) { innerPadding ->
+
         NavHost(
             navController = navController,
             startDestination = Screen.ExpenseEntry.route, // Your desired start screen
@@ -57,7 +59,6 @@ fun MainAppScreen() {
             composable(Screen.ExpenseEntry.route) { ExpenseEntryScreen() }
             composable(Screen.ViewExpenses.route) { ViewExpensesScreen() }
             composable(Screen.ExpenseReport.route) { ExpenseReportScreen() }
-            // Add other composable routes here if needed for deeper navigation later
         }
     }
 }

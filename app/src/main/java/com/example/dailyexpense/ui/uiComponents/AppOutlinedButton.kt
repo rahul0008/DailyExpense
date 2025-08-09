@@ -1,5 +1,6 @@
 package com.example.dailyexpense.ui.uiComponents
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -35,7 +36,7 @@ fun AppOutlinedButton(
     enabled: Boolean = true,
     textStyle: TextStyle = MaterialTheme.typography.labelLarge,
     colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
-    border: androidx.compose.foundation.BorderStroke? = ButtonDefaults.outlinedButtonBorder,
+    border: BorderStroke? = ButtonDefaults.outlinedButtonBorder(),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null

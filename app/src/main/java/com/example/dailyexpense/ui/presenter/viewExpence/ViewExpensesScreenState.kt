@@ -1,9 +1,11 @@
 package com.example.dailyexpense.ui.presenter.viewExpence
 
+import com.example.dailyexpense.db.entity.ExpenseEntity
 import com.example.dailyexpense.util.essentialEnums.ExpenseCategory
 
 data class ViewExpensesScreenState(
     val isLoading: Boolean = true,
+    val rawExpensesList: List<ExpenseEntity> = emptyList(),
     val expenses: List<ExpenseListItem> = emptyList(),
     val groupedExpenses: List<GroupedExpenses> = emptyList(), // Used when grouping is active
     val selectedDateFilter: DateFilterType = DateFilterType.TODAY,
@@ -15,7 +17,6 @@ data class ViewExpensesScreenState(
     val totalExpensesAmountFormatted: String = "₹0.00",
     val showDatePickerDialog: Boolean = false,
     val showDateRangePickerDialog: Boolean = false // For selecting a range
-    // You might add error states if needed
 ) {
     val showEmptyState: Boolean
         get() = !isLoading && expenses.isEmpty() && groupedExpenses.isEmpty()
@@ -52,5 +53,5 @@ enum class DateFilterType {
 enum class GroupingOption {
     NONE,
     BY_CATEGORY,
-    BY_Time // Could also be BY_MONTH etc.
+    BY_TIME // Could also be BY_MONTH etc.
 }

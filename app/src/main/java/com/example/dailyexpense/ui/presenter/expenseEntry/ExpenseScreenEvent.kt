@@ -13,10 +13,7 @@ sealed class ExpenseScreenEvent {
 
     // UI Interactions
     data object ToggleCategoryDropdown : ExpenseScreenEvent()
-    data class SubmitExpense(val context: Context) : ExpenseScreenEvent() // Context for Toast
-    data object ClearSubmissionStatus : ExpenseScreenEvent() // To reset animation/toast
-
-    // Lifecycle or Data Loading events (if applicable, e.g., for fetching totalSpentToday)
-    // data object LoadInitialData : ExpenseScreenEvent()
+    data object SubmitExpense : ExpenseScreenEvent()
+    data object ClearSubmissionStatus : ExpenseScreenEvent()
 }
 
